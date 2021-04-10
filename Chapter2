@@ -9,6 +9,34 @@ print('Welcome, {}!'.format(name))
 hours = input('How many hours did you work? ')
 rate = input('How much is the rate of your job? ')
 
-gross_pay = int(hours) * int(rate)
+gross_pay = float(hours) * float(rate)
 
-print('Your total payment is ${}.'.format(gross_pay))
+print('Your total payment is $ {:.2f}.'.format(gross_pay))
+
+# Exercise 4: Assume that we execute the following assignment statements:
+
+# width = 17
+# height = 12.0
+# For each of the following expressions, write the value of the expression and the type 
+# (of the value of the expression).
+# 1. width//2
+# 2. width/2.0
+# 3. height/3
+# 4. 1 + 2 * 5
+
+width = 17
+height = 12.0
+
+print(width//2)     # It will be 8 - a Integer
+print(width/2.0)    # It will be 8.5 - a Float
+print(height/3)     # It will be 4.0 - a Float
+print(1 + 2 * 5)    # It will be 11 - a Integer
+
+# Exercise 5: Write a program which prompts the user for a Celsius temperature, 
+# convert the temperature to Fahrenheit, and print out the converted temperature.
+
+temp = float(input('Please, insert the desired temperature in Celsius to be converted in Fahreinheit: '))
+temp_fahr = 32.0 + (temp * (9/5))
+
+print('The temperature of {:.1f}ºC is {:.1f}ºF'.format(temp, temp_fahr))
+
