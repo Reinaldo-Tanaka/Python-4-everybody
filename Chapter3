@@ -1,3 +1,26 @@
+# Short-circuit example of AND
+# If any of the variables is None --> then the function will not trigger!
+
+name = input('Please, how is your first name? ')
+surname = input('Please, how is your surname? ')
+
+def full_name():
+    print('Your full name is {} {}.'.format(name, surname))
+
+name and surname and full_name()
+
+# *******************************************************************
+# Short-circuit example of OR
+# The default value will appear if none is chosen
+
+default_color = 'Pink'
+user_color = input('Which color do your prefer? ') or default_color
+print(user_color)
+
+# ****************************************************************************************************************************
+# ****************************************************************************************************************************
+# ****************************************************************************************************************************
+
 # Exercise 1: Rewrite your pay computation to give the employee 1.5 times the hourly
 # rate for hours worked above 40 hours.
 
