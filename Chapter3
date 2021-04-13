@@ -1,0 +1,38 @@
+# Exercise 1: Rewrite your pay computation to give the employee 1.5 times the hourly
+# rate for hours worked above 40 hours.
+
+hours = float(input('Please, how many hours do you work? '))
+rate = float(input('Please, how much is your work rate? '))
+
+if hours < 40:
+    gross_pay = hours * rate
+else:
+    gross_pay = (40 * rate) + ((hours - 40) * (rate * 1.5))
+
+print('Your paycheck is $ {}.'.format(gross_pay))
+
+# ****************************************************************************************************************************
+
+
+# Exercise 3: Write a program to prompt for a score between 0.0 and 1.0. If the score is out of range, print an error message.
+# If the score is between 0.0 and 1.0, print a grade using the following table:
+# >= 0.9 A
+# >= 0.8 B
+# >= 0.7 C
+# >= 0.6 D
+# < 0.6 F
+
+score = float(input('Please, input the score: '))
+
+if score > 1 or score < 0:
+    print('Please, insert a value between 0.0 and 1.0.')
+elif score >= 0.9:
+    print('A')
+elif score >= 0.8:
+    print('B')
+elif score >= 0.7:
+    print('C')
+elif score >= 0.6:
+    print('D')
+elif score < 0.6:
+    print('F')
