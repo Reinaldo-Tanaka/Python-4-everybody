@@ -3,7 +3,7 @@
 import random
 
 def pegar_o_maior(lista_numeros):
-    maior = 0
+    maior = lista_numeros[0]
     for numero in lista_numeros:
         if numero > maior:
             maior = numero
@@ -12,10 +12,11 @@ def pegar_o_maior(lista_numeros):
 
 numeros = []
 for numero in range(0, 200):
-    numeros.append(random.randint(0, 1000))
+    numeros.append(random.randint(-100000, -1000))
 
 print(numeros)
 
 print(pegar_o_maior(numeros))
+
 
 # *****************************************************************************************************
