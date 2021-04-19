@@ -1,0 +1,21 @@
+# Maximum value in a list
+
+import random
+
+def pegar_o_maior(lista_numeros):
+    maior = 0
+    for numero in lista_numeros:
+        if numero > maior:
+            maior = numero
+
+    return maior
+
+numeros = []
+for numero in range(0, 200):
+    numeros.append(random.randint(0, 1000))
+
+print(numeros)
+
+print(pegar_o_maior(numeros))
+
+# *****************************************************************************************************
