@@ -20,3 +20,51 @@ print(pegar_o_maior(numeros))
 
 
 # *****************************************************************************************************
+
+# Maximum value in a list - teacher's example
+
+largest_so_far = -1
+print('Before', largest_so_far)
+
+for the_num in [9, 41, 12, 3, 74, 15]:
+    if the_num > largest_so_far:
+        largest_so_far = the_num
+    print(largest_so_far, the_num)
+
+print('After', largest_so_far)
+
+# *****************************************************************************************************
+
+# Counting
+import random
+
+def contando_itens(listinha):
+
+    numero_de_parametros = 0
+    for item in listinha:
+        numero_de_parametros = numero_de_parametros + 1
+
+    return numero_de_parametros
+
+lista_numeros = []
+
+for numero in range(1, random.randint(0,1000)):
+    lista_numeros.append(numero)
+
+print(lista_numeros)
+print(contando_itens(lista_numeros))
+
+# *****************************************************************************************************
+
+# Counting in a loop - teacher's example
+
+zork = 0
+print('Before', zork)
+for thing in [9, 41, 12, 3, 74, 15] :
+    zork = zork + 1
+    print(zork, thing)
+
+print('After', zork)
+
+# *****************************************************************************************************
+
