@@ -80,3 +80,40 @@ print('After', zork)
 
 # *****************************************************************************************************
 
+# Average
+import random
+
+def media(listinha):
+
+    numero_de_parametros = 0
+    total = 0
+    for item in listinha:
+        numero_de_parametros = numero_de_parametros + 1
+        total = total + item
+
+    media = total / numero_de_parametros
+
+    return media
+
+lista_numeros = []
+
+for numero in range(1, random.randint(0,100)):
+    lista_numeros.append(random.randint(1, 1000))
+
+print(lista_numeros)
+print(media(lista_numeros))
+
+# *****************************************************************************************************
+
+# Average - example of the teacher
+
+count = 0
+sum = 0
+
+print('Before', count, sum)
+for value in [9, 41, 12, 3, 74, 15] :
+    count = count + 1
+    sum = sum + value
+    print(count, sum, value)
+print ('After', count, sum, sum / count)
+
