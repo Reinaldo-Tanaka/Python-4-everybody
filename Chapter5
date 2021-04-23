@@ -172,3 +172,39 @@ def total_contar_media() :
 a, b, c = total_contar_media()
 print('O valor da soma dos números digitados é {}, contou-se {} números e a média foi de {}'.\
     format(a, b, c))
+
+# *****************************************************************************************************
+
+# Exercise 2: Write another program that prompts for a list of numbers as above and at the end prints out 
+# both the maximum and minimum of the numbers instead of the average.
+
+def maior_menor() :
+
+    maior = None
+    menor = None
+
+    while True :
+        try :
+            usuario_digita = input('Por favor, insira um número: ')
+            numero = float(usuario_digita)
+        except :
+            print('Por favor, insira um número, sem letras...')
+            numero = None
+
+        if usuario_digita == 'done' :
+            break
+        if numero :
+            if maior is None and menor is None :
+                maior = numero
+                menor = numero
+            elif maior is None or numero > maior :
+                maior = numero
+            elif menor is None or numero < menor :
+                menor = numero
+            else :
+                pass
+
+    return [maior, menor]
+
+a, b = maior_menor()
+print('O maior valor é {} e o menor é {}.'.format(a, b))
