@@ -29,3 +29,56 @@ print(count)
 
 # ******************************************************************************************************
 
+
+
+
+# ******************************************************************************************************
+
+# Exercise 1: Write a while loop that starts at the last character in the string and works its way backwards 
+# to the first character in the string, printing each letter on a separate line, except backwards.
+
+word = 'banana'
+count = len(word) - 1
+while count >= 0 :
+    print(word[count])
+    count = count - 1
+
+# If want to use for:
+
+word = 'banana'
+for letter in word[::-1] :
+    print(letter)
+
+# ******************************************************************************************************
+
+# Exercise 3: Encapsulate this code in a function named count, and generalize it so
+# that it accepts the string and the letter as arguments.
+
+# word = 'banana'
+# count = 0
+# for letter in word:
+#   if letter == 'a':
+#       count = count + 1
+# print(count)
+
+def count(word, letter) :
+    count = 0
+    for character in word :
+        if character == letter:
+            count = count + 1
+    return count
+
+print(count('pineapple', 'p'))
+
+# ******************************************************************************************************
+
+# Exercise 4: There is a string method called count that is similar to the function in
+# the previous exercise. Read the documentation of this method at:
+# https://docs.python.org/library/stdtypes.html#string-methods
+# Write an invocation that counts the number of times the letter a occurs in “banana”.
+
+word = 'banana'
+print(word.count('a'))
+
+# ******************************************************************************************************
+
