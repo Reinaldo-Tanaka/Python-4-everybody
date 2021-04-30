@@ -82,3 +82,73 @@ print(word.count('a'))
 
 # ******************************************************************************************************
 
+
+
+
+# ******************************************************************************************************
+# Example of string methods!
+
+>>>word = 'Se você acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!'
+
+>>>print(word.capitalize())
+Se você acha que fire emblem deveria ter menos personagem, que jogue final fantasy ß!
+
+>>>print(word.casefold())
+se você acha que fire emblem deveria ter menos personagem, que jogue final fantasy ss!
+# For example, the German lowercase letter 'ß' is equivalent to "ss". Since it is already lowercase, 
+# lower() would do nothing to 'ß'; casefold() converts it to "ss".
+
+>>>print(word.center(200,'-'))
+---------------------------------------------------------Se você acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!----------------------------------------------------------
+
+>>>print(word.count('Fi')
+2
+
+>>>print(word.encode(encoding="utf-8", errors="strict"))
+b'Se voc\xc3\xaa acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy \xc3\x9f!'
+
+
+
+# ******************************************************************************************************
+# Importing string library! >>>import string
+
+>>>print(string.ascii_letters)
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+# All letters used in English!
+
+>>>print(string.ascii_lowercase)
+abcdefghijklmnopqrstuvwxyz
+
+>>>print(string.ascii_uppercase)
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+>>>print(string.digits)
+0123456789
+
+>>>print(string.hexdigits)
+0123456789abcdefABCDEF
+
+>>>print(string.octdigits)
+01234567
+
+>>>print(string.punctuation)
+!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+
+>>>print(string.printable)
+0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ 	
+
+
+
+# EVERYTHING!!!!!
+
+>>>print(string.whitespace)
+ 	
+
+
+
+# Yes, a looooooooot of whitespaces!
+# From documentation of Python - A string containing all ASCII characters that are considered whitespace. 
+# This includes the characters space, tab, linefeed, return, formfeed, and vertical tab.
+
+
+
