@@ -29,6 +29,20 @@ print(count)
 
 # ******************************************************************************************************
 
+# Parsing and extracting
+data = 'From stephen.marquard@uct.ac.za Sat Jan  5 09:14:16 2008'
+atpos = data.find('@')
+print(atpos)
+
+sppos = data.find(' ',atpos)
+print(sppos)
+
+host = data[atpos+1 : sppos]
+print(host)
+
+
+# ******************************************************************************************************
+
 
 
 
@@ -82,7 +96,14 @@ print(word.count('a'))
 
 # ******************************************************************************************************
 
+# Exercise 5: Take the following Python code that stores a string:
+# str = 'X-DSPAM-Confidence:0.8475'
+# Use find and string slicing to extract the portion of the string after the colon character and then 
+# use the float function to convert the extracted string into a floating point number.
 
+colon_place = str.find(':')
+number = str[colon_place+1:]
+number = float(number)
 
 
 # ******************************************************************************************************
@@ -106,6 +127,57 @@ se você acha que fire emblem deveria ter menos personagem, que jogue final fant
 
 >>>print(word.encode(encoding="utf-8", errors="strict"))
 b'Se voc\xc3\xaa acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy \xc3\x9f!'
+
+>>>print(word.endswith('!'))
+True
+
+>>>print(word.find('Fi',20))
+69
+# If no start (or end) is inputed, it will show the first sign of the characters.
+
+# *** This one excels in importance: .format()!  ***
+>>>"The sum of 1 + 2 is {0}".format(1+2)
+'The sum of 1 + 2 is 3'
+
+# See more in https://docs.python.org/3/library/string.html#formatstrings
+
+>>>print(word.isalnum())
+False
+# The isalnum() method returns True if all the characters are alphanumeric, meaning alphabet letter 
+# (a-z) and numbers (0-9).
+# Example of characters that are not alphanumeric: (space)!#%&? etc.
+
+>>>print(word.isalpha())
+False
+
+>>>print(word.isdecimal())
+False
+
+>>>print(word.join('123'))
+1Se você acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!2Se você acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!3
+
+>>>print(word.lower())
+se você acha que fire emblem deveria ter menos personagem, que jogue final fantasy ß!
+
+>>> '   spacious   '.lstrip()
+'spacious   '
+>>>'www.example.com'.lstrip('cmowz.')
+'example.com'
+
+>>>print(word.partition(' '))
+('Se', ' ', 'você acha que Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!')
+
+>>>print(word.partition('Fire Emblem'))
+('Se você acha que ', 'Fire Emblem', ' deveria ter menos personagem, que jogue Final Fantasy ß!')
+
+>>>print(word.replace('que','uma',1))
+Se você acha uma Fire Emblem deveria ter menos personagem, que jogue Final Fantasy ß!
+
+>>>print(word.rpartition('que'))
+('Se você acha que Fire Emblem deveria ter menos personagem, ', 'que', ' jogue Final Fantasy ß!')
+
+>>>print(word.split(' '))
+['Se', 'você', 'acha', 'que', 'Fire', 'Emblem', 'deveria', 'ter', 'menos', 'personagem,', 'que', 'jogue', 'Final', 'Fantasy', 'ß!']
 
 
 
