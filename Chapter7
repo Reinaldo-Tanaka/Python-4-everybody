@@ -1,1 +1,64 @@
 
+# *** Counting lines in a file ***
+
+fhand = open('mbox-short.txt')
+count = 0
+for line in fhand:
+count = count + 1
+print('Line Count:', count)
+
+# Return: Line Count: 1910
+
+# ******************************************************************************************************
+
+# If you know the file is relatively small compared to the size of your main memory,
+# you can read the whole file into one string using the read method on the file handle.
+fhand = open('mbox-short.txt')
+inp = fhand.read()
+print(len(inp))
+# Return: 94626
+print(inp[:20])
+# Return: From stephen.marquar
+
+# ******************************************************************************************************
+
+# *** Searching for the sender ***
+
+arquivo = open('mbox-short.txt')
+for linha in arquivo:
+    linha = linha.rstrip() # Esse método retira TODO caracter que é considerado "branco (whitespace)"
+    if linha.startswith('From:'):
+        print(linha)
+
+# An alternative way
+
+arquivo = open('mbox-short.txt')
+for linha in arquivo:
+    linha = linha.rstrip()
+    # Caso não comece com "From", simplesmente volta com o "continue"
+    if not linha.startswith('From:'):
+        continue
+    print(linha)
+# This one is a better version - because in most of the cases, it is not just a "print", it gets more commands
+
+# ******************************************************************************************************
+
+# *** Using find() Method ***
+
+arquivo = open('mbox-short.txt')
+for linha in arquivo:
+    linha = linha.rstrip()
+    if linha.find('@uct.ac.za') == -1: continue
+    # Nesta linha, caso não ache este trecho de email, dá -1! Se achar, é um valor > 0
+    print(linha)
+
+# The find() method finds the first occurrence of the specified value.
+# The find() method returns -1 if the value is not found.
+# The find() method is almost the same as the index() method, the only difference is that 
+# the index() method raises an exception if the value is not found. (See example below)
+# From https://www.w3schools.com/python/ref_string_find.asp
+
+# ******************************************************************************************************
+
+
+
