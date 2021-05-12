@@ -60,5 +60,49 @@ for linha in arquivo:
 
 # ******************************************************************************************************
 
+# *** Letting the user choose the file name ***
+
+nome_arquivo = input('Enter the file name: ')
+arquivo_aberto = open(nome_arquivo)
+count = 0
+for linha in arquivo_aberto:
+    if linha.startswith('Subject:'):
+        count = count + 1
+print('Há', count, 'linhas no arquivo', nome_arquivo)
+
+# ******************************************************************************************************
+
+# Using try, except, and open
+
+nome_arquivo = input('Por favor, coloque o arquivo a se abrir: ')
+try :
+    arquivo_aberto = open(nome_arquivo)
+except:
+    print('Arquivo não pôde ser aberto:', nome_arquivo)
+    exit()
+count = 0
+for linha in arquivo_aberto:
+    if linha.startswith('Subject:'):
+        count = count + 1
+print('Há', count, 'linhas no arquivo', nome_arquivo)
+
+# ******************************************************************************************************
+
+# 7.11 Exercises
+
+# Exercise 1: Write a program to read through a file and print the contents
+# of the file (line by line) all in upper case.
+
+
+arquivin = input('Por favor, qual o nome do arquivo a ser lido? ')
+try :
+    leitura = open(arquivin)
+except :
+    print('Este arquivo não foi encontrado.')
+    exit()
+for linha in leitura :
+    print(linha.upper())
+
+# ******************************************************************************************************
 
 
