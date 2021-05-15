@@ -1,1 +1,47 @@
+# Strings, files, lists and Guardian Pattern
+
+arquivo = open('mbox-short.txt')
+
+for linha in arquivo :
+    linha = linha.strip()
+    # if linha == '' : continue --> Guardian
+    palavras = linha.split()
+    # Guardian
+    if len(palavras) < 1 : continue # Podemos deixar mais robusto com len(palavras) < 3
+    if palavras[0] != 'From' : continue
+    print(palavras[2])
+
+# No Guardian Pattern podemos deixar mais bonito ainda:
+# if len(palavras) < 3 or palavras[0] != 'From' :
+
+# *********************************************************************************************************
+
+# Exercise 2: Figure out which line of the above program is still not properly guarded. See if you can 
+# construct a text file which causes the program to fail and then modify the program so that the line 
+# is properly guarded and test it to make sure it handles your new text file.
+
+fhand = open('mbox-short.txt')
+count = 0
+for line in fhand:
+    words = line.split()
+    # Guardian pattern
+    if len(words) < 3 : continue # Instead of len(words) == 0, because there are some lines that has one or two parameters
+    if words[0] != 'From' : continue
+    print(words[2])
+
+# *********************************************************************************************************
+
+# Exercise 3: Rewrite the guardian code in the above example without two if statements. Instead, use a 
+# compound logical expression using the or logical operator with a single if statement.
+
+fhand = open('mbox-short.txt')
+count = 0
+for line in fhand:
+    words = line.split()
+    # Guardian pattern
+    if len(words) < 3 or words[0] != 'From' : continue
+    print(words[2])
+    
+# *********************************************************************************************************
+
 
