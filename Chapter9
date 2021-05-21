@@ -17,3 +17,42 @@ names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
 for name in names :
     counts[name] = counts.get(name, 0) + 1
 print(counts)
+
+# ****************************************************************************************************
+
+# Exercise 1: Download a copy of the file www.py4e.com/code3/words.txt
+# Write a program that reads the words in words.txt and stores them as keys in a dictionary. 
+# It doesn’t matter what the values are. Then you can use the in operator as a fast way to 
+# check whether a string is in the dictionary.
+
+arquivo = open('words.txt')
+
+total_palavras = list()
+for linha in arquivo :
+    linha = linha.strip()
+    palavras = linha.split()
+    for palavra in palavras :
+        total_palavras.append(palavra)
+
+dic_palavras = dict()
+for palavra in total_palavras :
+    dic_palavras[palavra] = 1
+
+print(dic_palavras)
+
+# *** Or ***
+
+arquivo = open('words.txt')
+
+dic_palavras = dict()
+total_palavras = list()
+for linha in arquivo :
+    linha = linha.strip()
+    palavras = linha.split()
+    for palavra in palavras :
+        dic_palavras[palavra] = 1
+
+print(dic_palavras)
+
+# ****************************************************************************************************
+
