@@ -1,4 +1,4 @@
-# When we see a new name
+# From lecture - When we see a new name
 
 counts = dict()
 names = ['csev', 'cwen', 'csev', 'zqian', 'csev']
@@ -16,6 +16,109 @@ counts = dict()
 names = ['csev', 'cwen', 'csev', 'zqian', 'cwen']
 for name in names :
     counts[name] = counts.get(name, 0) + 1
+print(counts)
+
+# ****************************************************************************************************
+
+# From lecture - Counting pattern
+
+counts = dict()
+print('Enter a line of text: ')
+line = input('')
+
+words = line.split()
+
+print('Words:', words)
+
+print('Counting...')
+for word in words :
+    counts[word] = counts.get(word,0) + 1
+print('Counts', counts)
+
+
+# ****************************************************************************************************
+
+# From lecture - loops and dictionaries
+
+counts = {'chuck':1, 'fred':42, 'jan':100}
+for key in counts :
+    print(key, counts[key])
+
+# *** Or ***
+
+counts = {'chuck':1, 'fred':42, 'jan':100}
+for key, value in counts.items() :
+    print(key, value)
+
+# ****************************************************************************************************
+
+# From lecture - the first code showed in course
+
+name = input('Enter file: ')
+handle = open(name)
+
+counts = dict()
+for line in handle :
+    words = line.split()
+    for word in words :
+        counts[word] = counts.get(word,0) + 1
+
+bigcount = None
+bigword = None
+for word, count in counts.items() :
+    if bigcount is None or count > bigcount :
+        bigword = word
+        bigcount = count
+
+print(bigword, bigcount)
+
+# *** This code will count how many times a word appears in the text. ***
+
+# ****** MEU!!!!! --> verificar a maior palavra *****
+
+# From lecture - the first code showed in course
+
+name = input('Enter file: ')
+handle = open(name)
+
+counts = dict()
+for line in handle :
+    words = line.split()
+    for word in words :
+        counts[word] = len(word)
+
+# print(counts)
+biglength = None
+bigword = None
+for word, length in counts.items() :
+    if biglength is None or length > biglength :
+        bigword = word
+        biglength = length
+
+print(bigword, biglength)
+
+# ****************************************************************************************************
+
+# From lecture (book) - counting words as full text (puctuation)
+
+import string
+
+fname = input('Enter the file name: ')
+try:
+    fhand = open(fname)
+except:
+    print('File cannot be opened:', fname)
+    exit()
+
+counts = dict()
+for line in fhand:
+    line = line.rstrip()
+    line = line.translate(line.maketrans('', '', string.punctuation))
+    line = line.lower()
+    words = line.split()
+    for word in words:
+        counts[word] = counts.get(word,0) + 1
+
 print(counts)
 
 # ****************************************************************************************************
@@ -53,6 +156,119 @@ for linha in arquivo :
         dic_palavras[palavra] = 1
 
 print(dic_palavras)
+
+# ****************************************************************************************************
+
+# Exercise 2: Write a program that categorizes each mail message by which day of the week the commit 
+# was done. To do this look for lines that start with “From”, then look for the third word and keep 
+# a running count of each of the days of the week. At the end of the program print
+# out the contents of your dictionary (order does not matter).
+
+arquivo = input('Por favor, qual arquivo quer usar?')
+
+try :
+    lido = open(arquivo)
+except:
+    print('Arquivo não encontrado')
+    quit()
+
+dias_semana = dict()
+for linha in lido :
+    linha.strip()
+    palavras = linha.split()
+    if len(palavras) < 3 or palavras[0] != 'From' : continue
+    dstqqss = palavras[2]
+    dias_semana[dstqqss] = dias_semana.get(dstqqss, 0) + 1
+
+print(dias_semana)
+
+# ****************************************************************************************************
+
+# Exercise 3: Write a program to read through a mail log, build a histogram using a dictionary
+#to count how many messages have come from each email address, and print the dictionary.
+
+arquivo = input('Por favor, qual arquivo quer usar? ')
+
+try :
+    lido = open(arquivo)
+except:
+    print('Arquivo não encontrado')
+    quit()
+
+email = dict()
+for linha in lido :
+    linha.strip()
+    palavras = linha.split()
+    if len(palavras) < 3 or palavras[0] != 'From' : continue
+    quem = palavras[1]
+    email[quem] = email.get(quem, 0) + 1
+
+print(max(email.items()))
+
+# ****************************************************************************************************
+
+# Exercise 4: Add code to the above program to figure out who has the most messages in the file. 
+# After all the data has been read and the dictionary has been created, look through the dictionary 
+# using a maximum loop (see Chapter 5: Maximum and minimum loops) to find who has the most messages 
+# and print how many messages the person has.
+
+arquivo = input('Por favor, qual arquivo quer usar? ')
+
+try :
+    lido = open(arquivo)
+except:
+    print('Arquivo não encontrado')
+    quit()
+
+email = dict()
+for linha in lido :
+    linha.strip()
+    palavras = linha.split()
+    if len(palavras) < 3 or palavras[0] != 'From' : continue
+    quem = palavras[1]
+    email[quem] = email.get(quem, 0) + 1
+
+maior_valor = max(email.values())
+
+for pessoas in email.items() :
+    if pessoas[1] != maior_valor : continue
+    maior_pessoa = pessoas[0]
+
+print(maior_pessoa, maior_valor)
+
+# ****************************************************************************************************
+
+# Exercise 5: This program records the domain name (instead of the
+# address) where the message was sent from instead of who the mail came
+# from (i.e., the whole email address). At the end of the program, print
+# out the contents of your dictionary.
+
+arquivo = input('Por favor, qual arquivo quer usar? ')
+
+try :
+    lido = open(arquivo)
+except:
+    print('Arquivo não encontrado')
+    quit()
+
+email = dict()
+for linha in lido :
+    linha.strip()
+    palavras = linha.split()
+    if len(palavras) < 3 or palavras[0] != 'From' : continue
+    endereco = palavras[1]
+    depois_arroba = list()
+    arrobou = False
+    for letra in endereco :
+        if letra == '@' :
+            arrobou = True
+            continue
+        if arrobou != True : continue
+        depois_arroba.append(letra)
+    endereco = ''.join(depois_arroba)
+    email[endereco] = email.get(endereco, 0) + 1
+
+print(email)
 
 # ****************************************************************************************************
 
