@@ -1,0 +1,48 @@
+# ======================== From the book ===================================================
+# Colocando as palavras em ordem de tamanho - usando tuples em uma lista
+# *** Note que o bagulho é colocar o tamanho da palavra no primeiro termo (linha 9), pois assim pode-se dar um 
+# "sort" de boa!
+
+txt = 'but soft what light in yonder window breaks'
+words = txt.split()
+t = list()
+for word in words:
+    t.append((len(word), word))
+    t.sort(reverse=True)
+res = list()
+for length, word in t:
+    res.append(word)
+print(res)
+
+# *********************************************************************************************************
+# Usando bunito o tuple unpack
+
+addr = 'monty@python.org'
+uname, domain = addr.split('@')
+
+print(uname)
+print(domain)
+
+# *********************************************************************************************************
+
+# === From teacher: top 10 most common words ===
+
+fhand = open('romeo.txt')
+counts = dict()
+for line in fhand :
+    words = line.split()
+    for word in words :
+        counts[word] = counts.get(word, 0) + 1
+
+lst = list()
+for key, val in counts.items() :
+    newtup = (val, key)
+    lst.append(newtup)
+
+lst = sorted(lst, reverse=True)
+
+for val, key in lst[:10] :
+    print(key, val)
+    
+# *********************************************************************************************************
+
