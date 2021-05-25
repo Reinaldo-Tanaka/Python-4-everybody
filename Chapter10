@@ -45,4 +45,107 @@ for val, key in lst[:10] :
     print(key, val)
     
 # *********************************************************************************************************
+# === From book - multiple dictionary attributes ====
+
+d = {'a':10, 'b':1, 'c':22}
+
+l = list()
+for chave, valor in list(d.items()) :
+    l.append((valor, chave))
+
+l.sort(reverse=True)
+print(l)
+
+# *********************************************************************************************************
+
+# Exercise 1: Revise a previous program as follows: Read and parse the “From” lines and pull out the 
+# addresses from the line. Count the number of messages from each person using a dictionary.
+# After all the data has been read, print the person with the most commits by creating a list of 
+# (count, email) tuples from the dictionary. Then sort the list in reverse order and print out the 
+# person who has the most commits.
+
+lendo = open('mbox.txt')
+
+enviante = dict()
+for linha in lendo :
+    linha.strip()
+    templ = linha.split()
+    if len(templ) < 3 or templ[0] != 'From' : continue
+    enviante[templ[1]] = enviante.get(templ[1], 0) + 1
+
+manda_mais = list()
+for chave, valor in enviante.items() :
+    manda_mais.append((valor, chave))
+manda_mais.sort(reverse=True)
+
+for valor, chave in manda_mais[:7] :
+    print(chave, valor)
+
+# *********************************************************************************************************
+
+# Exercise 2: This program counts the distribution of the hour of the day for each of the messages. 
+# You can pull the hour from the “From” line by finding the time string and then splitting that string 
+# into parts using the colon character. Once you have accumulated the counts for each
+# hour, print out the counts, one per line, sorted by hour as shown below.
+
+lendo = open('mbox.txt')
+
+hora = dict()
+for linha in lendo :
+    linha.strip()
+    templ = linha.split()
+    if len(templ) < 3 or templ[0] != 'From' : continue
+    temph = int(templ[-2].split(':')[0])
+    hora[temph] = hora.get(temph, 0) + 1
+
+
+hora_mais = list()
+for chave, valor in hora.items() :
+    hora_mais.append((chave, valor))
+hora_mais.sort()
+
+for chave, valor in hora_mais[:14] :
+    print(chave, valor)
+
+# *********************************************************************************************************
+
+# Exercise 3: Write a program that reads a file and prints the letters in decreasing order of frequency. 
+# Your program should convert all the input to lower case and only count the letters a-z. 
+# Your program should not count spaces, digits, punctuation, or anything other than the letters a-z.
+# Find text samples from several different languages and see how letter frequency varies between languages.
+
+import string
+
+lendo = open('mbox.txt')
+
+numerais = '1234567890'
+letras = dict()
+for linha in lendo :
+    linha.strip()
+    linha = linha.translate(linha.maketrans('', '', string.punctuation))
+    linha = linha.translate(linha.maketrans('', '', numerais))
+    templ = linha.split()
+    if templ == []: continue
+    for palavra in templ :
+        palavra = palavra.lower()
+        for letra in palavra :
+            letras[letra] = letras.get(letra, 0) + 1
+
+letra_alf = list()
+for chave, valor in letras.items() :
+    letra_alf.append((valor, chave))
+letra_alf.sort() # Esta linha deixa tudo em ordem. Qual você quiser!!!
+
+soma = 0
+for valor, chave in letra_alf :
+    soma = soma + valor
+
+porcentagem = list()
+for valor, chave in letra_alf :
+    porcentagem.append((valor*100/soma, chave))
+
+for dados in porcentagem :
+    print('{:0.2f} % é quanto tem da letra {}'.format(dados[0],dados[1]))
+
+
 
