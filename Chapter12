@@ -147,8 +147,191 @@ for link in links:
 
 # *************************************************************************************************************
 
+# === Parsing HTML with Beautiful Soup ===
+
+# Search for link values within URL input
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('Enter - ')
+html = urllib.request.urlopen(url, context=ctx).read()
+soup = BeautifulSoup(html, 'html.parser')
+
+# Retrieve all of the anchor tags
+tags = soup('a')
+for tag in tags :
+    print(tag.get('href', None))
 
 
 # *************************************************************************************************************
+
+# Exercise 1: Change the socket program socket1.py to prompt the user for the URL so it can read any 
+# web page. You can use split('/') to break the URL into its component parts so you can extract the host
+# name for the socket connect call. Add error checking using try and except to handle the condition 
+# where the user enters an improperly formatted or non-existent URL.
+
+import socket
+
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('data.pr4e.org', 80))
+user_input = input('Please, which page do you want to see? ')
+cmd = ('GET ' + user_input + ' HTTP/1.0\r\n\r\n').encode()
+# cmd = 'GET http://data.pr4e.org/romeo.txt HTTP/1.0\r\n\r\n'.encode()
+try :
+    mysock.send(cmd)
+except :
+    print('This is not a valid url.')
+    quit()
+
+while True:
+    data = mysock.recv(512)
+    if len(data) < 1:
+        break
+    print(data.decode(),end='')
+
+mysock.close()
+
+
+# *************************************************************************************************************
+
+# Exercise 2: Change your socket program so that it counts the number of characters it has received 
+# and stops displaying any text after it has shown 3000 characters. The program should retrieve the 
+# entire document and count the total number of characters and display the count
+# of the number of characters at the end of the document.
+
+import socket
+
+mysock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+mysock.connect(('data.pr4e.org', 80))
+user_input = input('Please, which page do you want to see? ')
+cmd = ('GET ' + user_input + ' HTTP/1.0\r\n\r\n').encode()
+# cmd = 'GET http://data.pr4e.org/romeo.txt HTTP/1.0\r\n\r\n'.encode()
+try :
+    mysock.send(cmd)
+except :
+    print('This is not a valid url.')
+    quit()
+
+count = 0
+show_str = list()
+while True:
+    data = mysock.recv(512)
+    data = data.decode()
+    for datum in data :
+        count = count + 1
+        if count <= 3000 :
+            show_str.append(datum)
+    if len(data) < 1:
+        break
+
+print(''.join(show_str))
+print('The number of characters is', count)
+mysock.close()
+
+# *************************************************************************************************************
+
+# Exercise 3: Use urllib to replicate the previous exercise of (1) retrieving the document from a URL, 
+# (2) displaying up to 3000 characters, and (3) counting the overall number of characters in the document. 
+# Don’t worry about the headers for this exercise, simply show the first 3000 characters of the document contents.
+
+import urllib.request, urllib.parse, urllib.error
+
+file = input('Please, which page do you want to see? ')
+
+try :
+    fhand = urllib.request.urlopen(file)
+except :
+    print('This is not a valid url.')
+    quit()
+
+count = 0
+show_str = list()
+
+for line in fhand :
+    line = line.decode()
+    for word in line :
+        count = count + 1
+        if count <= 3000 :
+            show_str.append(word)
+
+
+print(''.join(show_str))
+print('The number of characters is', count)
+
+# *************************************************************************************************************
+
+# Exercise 4: Change the urllinks.py program to extract and count paragraph (p) tags from the retrieved 
+# HTML document and display the count of the paragraphs as the output of your program. Do not display
+# the paragraph text, only count them. Test your program on several small web pages as well as some larger web pages.
+
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('Enter - ')
+html = urllib.request.urlopen(url, context=ctx).read()
+soup = BeautifulSoup(html, 'html.parser')
+
+#  Retrieve all of the anchor tags
+paragraphs = soup.find_all('p', None)
+print('We have ' + str(len(paragraphs)) + ' paragraphs in the site.')
+
+
+# *************************************************************************************************************
+
+# 3rd autograder! Allanah!!!!!!!!!!!!!!!
+
+# To run this, download the BeautifulSoup zip file
+# http://www.py4e.com/code3/bs4.zip
+# and unzip it in the same directory as this file
+
+import urllib.request, urllib.parse, urllib.error
+from bs4 import BeautifulSoup
+import ssl
+
+def defining_url(url) :
+    html = urllib.request.urlopen(url, context=ctx).read()
+    soup = BeautifulSoup(html, 'html.parser')
+    return soup
+
+def retrieving_tags(soup) :# Retrieve all of the anchor tags
+    count = 0
+    tags = soup('a')
+    for tag in tags:
+        count = count + 1
+        if count != position : continue
+        new_url = tag.get('href', None)
+        return new_url
+
+# Ignore SSL certificate errors
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+url = input('Enter URL - ')
+count_limit = int(input('Enter count - '))
+position = int(input('Enter position - '))
+
+for n in range(count_limit) :
+    if n == 0 :
+        soups = defining_url(url)
+    else :
+        soups = defining_url(new_url)
+    new_url = retrieving_tags(soups)
+    print(new_url)
+print(new_url)
+
+
 # *************************************************************************************************************
 # *************************************************************************************************************
