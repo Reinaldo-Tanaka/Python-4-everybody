@@ -1,0 +1,76 @@
+#  Criando uma tabela para base de dados
+
+import sqlite3
+
+conn = sqlite3.connect('music.sqlite')
+cur = conn.cursor()
+
+cur.execute('DROP TABLE IF EXISTS Tracks')
+cur.execute('CREATE TABLE Tracks (title TEXT, plays INTEGER)')
+
+conn.close()
+
+# Aqui se cria uma tabela cujo arquivo será "music.sqlite" e terá "title" e "plays" como colunas
+# que neste contexto chamam-se "attributes". "title" terá seus dados como texto, "plays" terá
+# inteiros.
+
+# ************************************************************************************************
+# *** From teacher: Criando uma tabela e inserindo dados ***
+
+import sqlite3
+
+conn = sqlite3.connect('music.sqlite')
+cur = conn.cursor()
+
+cur.execute('INSERT INTO Tracks (title, plays) VALUES (?, ?)', 
+    ('Thunderstruck', 20))
+cur.execute('INSERT INTO Tracks (title, plays) VALUES (?, ?)', 
+    ('My Way', 15))
+conn.commit()
+
+print('Tracks:')
+cur.execute('SELECT title, plays FROM Tracks')
+for row in cur:
+     print(row)
+
+cur.execute('DELETE FROM Tracks WHERE plays < 100')
+conn.commit()
+
+cur.close()
+
+# Neste caso já foi criado a tabela "Tracks" anteriormente e agora apenas inserimos os valores
+# Neste exemplo, os comandos mais abaixo retiram do arquivo os dados postos. 
+# E perceba o "commit()": função pra fixar os dados!
+
+# ************************************************************************************************
+# *** From Reinaldinho: Criando uma tabela e inserindo dados ***
+
+import sqlite3
+
+conn = sqlite3.connect('fe.sqlite')
+cur = conn.cursor()
+
+cur.execute('DROP TABLE IF EXISTS Main_chars')
+cur.execute('CREATE TABLE Main_chars (Title TEXT, Name TEXT, Weapon BOOLEAN)')
+cur.execute('INSERT INTO Main_chars (Title, Name, Weapon) VALUES (?, ?, ?)',
+    ('暗黒竜と光の剣', 'Marth', True))
+cur.execute('INSERT INTO Main_chars (Title, Name, Weapon) VALUES (?, ?, ?)',
+    ('聖戦の系譜', 'Sigurd', False))
+conn.commit()
+
+print('Main_chars:')
+cur.execute('SELECT Title, Name, Weapon FROM Main_chars')
+for row in cur:
+     print(row)
+
+cur.close()
+
+# Neste caso particular, agrego os dois códigos dados pelo professor e crio minha tabela com 
+# os dados de FE1 e FE4 - interessante notar que os valores BOOLEAN são 0 e 1 pra False e True!
+# *** Nota pra mim mesmo: não faço ideia o que seja o ? nos VALUES!
+
+# ************************************************************************************************
+# ************************************************************************************************
+# ************************************************************************************************
+# ************************************************************************************************
+# ************************************************************************************************
